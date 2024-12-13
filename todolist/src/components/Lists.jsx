@@ -1,7 +1,9 @@
 import TodoItem from './TodoItem'
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useContext } from 'react';
+import { TodoStateContext } from '../App';
 
-export default function Lists({todos, onUpdate, onDelete}){
+export default function Lists(){
+  const todos = useContext(TodoStateContext)
   const [search,setSearch] = useState("");
 
   const onChangeSearch = (e) =>{
@@ -39,7 +41,7 @@ export default function Lists({todos, onUpdate, onDelete}){
       <input value={search} onChange={onChangeSearch} className='w-full border-b-2 border-slate-300 py-3.5 outline-none focus:border-sky-300 ' type="text" placeholder="검색어를 입력하세요" />
       <div className='flex flex-col gap-5'>
         {filteredTodos.map((todo)=>{
-          return <TodoItem key ={todo.id} {...todo} onUpdate = {onUpdate} onDelete ={onDelete}/>;
+          return <TodoItem key ={todo.id} {...todo}/>;
         })}
       </div>
     </div>
