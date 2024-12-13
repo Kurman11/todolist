@@ -1,4 +1,6 @@
-export default function Header(){
+import {memo} from 'react'
+
+const Header = () => {
   return (
     <div>
       <h3 className= 'my-3'>오늘은 🐱‍💻</h3>
@@ -6,3 +8,5 @@ export default function Header(){
     </div>
   )
 }
+const memoizedHeader = memo(Header)
+export default  memoizedHeader()
